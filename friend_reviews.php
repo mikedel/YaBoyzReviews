@@ -30,63 +30,33 @@
                 </div>
             </div>
         </div>
-        <div class="well">
-            <div class="page-header">
-                <h3>The Avengers</h3>
-                <h5>from Victor Friend</h5>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <p>
-                The best comic book adaptation I've seen so far with an excellent cast and top notch special effects...
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-md-8"></div>
-                <div class="col-md-4">
-                    <a class="btn btn-success btn-sm">Reply</a>
-                    <a class="btn btn-danger btn-sm">Delete</a>
-                </div>
-            </div>
-        </div>
-        <div class="well">
-            <div class="row page-header">
-                <h3>The Happening</h3>
-                <h5>from Teddy Hughes</h5>
-                <span class="glyphicon glyphicon-star"></span>
-                <p>
-                This movie is not worth it. Watch it only for the laughs though! Haha. Remember back in the day when we used to watch all these weird movies?
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-md-8"></div>
-                <div class="col-md-4">
-                    <a class="btn btn-success btn-sm">Reply</a>
-                    <a class="btn btn-danger btn-sm">Delete</a>
-                </div>
-            </div>
-        </div>
-        <div class="well">
-            <div class="row page-header">
-                <h3>CSI: Miami</h3>
-                <h5>from Mike Del</h5>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <p>
-                This show made me say it first, YEAHHHHHHH. Lol Can't wait for you to see it yourself! Let me know what you think.
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-md-8"></div>
-                <div class="col-md-4">
-                    <a class="btn btn-success btn-sm">Reply</a>
-                    <a class="btn btn-danger btn-sm">Delete</a>
-                </div>
-            </div>
-        </div>
-        </div>
+        <?php
+            require_once 'mediapost.php';
+            session_start();
+            $post = new MediaPost();
+            $recommendations = $post->getRecommendationsForUser($_SESSION['authenticated_user']);
+            if ($recommendations) {
+                while ($recommendation = $recommendations->fetch_object()) {
+                    echo '<div class="well"><div class="page-header"><h3>';
+                    $media = $post->getMediaById($recommendation->media);
+                    echo $media->title;
+                    echo "</h3><h5>";
+                    $user = $post->getUserById($recommendation->from_user);
+                    echo $user->first_name;
+                    echo " ";
+                    echo $user->last_name;
+                    echo "</h5>";
+                    for ($i = 0; $i < $recommendation->rating; $i++)
+                        echo '<span class="glyphicon glyphicon-star"></span>';
+                    echo "<p>";
+                    echo $recommendation->comment;
+                    echo "</p>";
+
+                    echo "</div></div>";
+                }
+            }
+        ?>
+    </div>
 
 
 </body>
