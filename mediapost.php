@@ -4,19 +4,19 @@ require_once 'connection.php';
         private $post_output;
         private $dbConnection;
         private $addPost;
-        private $post_id;
+        private $recmomendation_id;
 
         public function __construct(){
             $this->dbConnection = new DatabaseConnection();
             $this->post_output = "";
-            $this->addPost = $this->dbConnection->prepare_statement("INSERT INTO `media` (`title`, `poster_id`) VALUES (?, ?)");
+            $this->addPost = $this->dbConnection->prepare_statement("INSERT INTO `UserRecommendation` (`from_user`, `to_user`, `media`, `rating`, `comment`, `date_created`) VALUES (?, ?, ?, ?, ?, ?)");
         }
 
-        public function storePost($title, $poster_id){
-            $this->addPost->bind_param("sd", $title, $poster_id);
+        public function storeRecommendation($from_user, $to_user, $media, $rating, $comment, $date_created){
+            $this->addPost->bind_param("ddddss", $from_user, $to_user, $media, $rating, $comment, $date_created);
             $this->addPost->execute();
-            $this->post_id = $this->addPost->insert_id;
-            echo $this->post_id;
+            $this->recommendation_id = $this->addPost->insert_id;
+            echo $this->recommendation_id;
         }
 
         public function getAllReviews() {
@@ -33,6 +33,15 @@ require_once 'connection.php';
             $result = $this->dbConnection->send_sql($query_string);
             if ($result)
                 return $result->fetch_object();
+            else
+                echo "horiffic failure";
+        }
+
+        public function getMediaIdByTitle($title) {
+            $query_string = "SELECT * FROM `Media` WHERE `title` = \"" . $title . "\"";
+            $result = $this->dbConnection->send_sql($query_string);
+            if ($result)
+                return $result->fetch_object()->id;
             else
                 echo "horiffic failure";
         }

@@ -15,8 +15,16 @@
                 <li><a href="recommend.php">Recommend To Friends</a></li>
                 <li><a href="public_reviews.php">Read Public Reviews</a></li>
             </ul>
-            <button type="button" class="btn btn-default navbar-btn navbar-right"><a href="signin.php">Sign In</a></button>
-            <button type="button" class="btn btn-default navbar-btn navbar-right"><a href="signup.php">Sign Up</a></button>
+            <?php
+                session_start();
+                if(isset($_SESSION['authenticated_user'])) {
+                    echo '<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="signout.php">Sign Out</a></button>';
+                }
+                else {
+                    echo '<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="signin.php">Sign In</a></button>';
+                    echo '<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="signup.php">Sign Up</a></button>';
+                }
+            ?>
         </div>
     </div>
 </nav>
