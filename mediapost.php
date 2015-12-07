@@ -45,5 +45,14 @@ require_once 'connection.php';
             else
                 echo "horiffic failure";
         }
+
+        public function getRecommendationsForUser($user_id) {
+            $query_string = "SELECT * FROM `UserRecommendation` WHERE `to_user` = " . $user_id;
+            $result = $this->dbConnection->send_sql($query_string);
+            if ($result)
+                return $result;
+            else
+                echo "horiffic failure";
+        }
 }
 ?>
