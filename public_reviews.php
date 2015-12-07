@@ -53,19 +53,31 @@
             $post = new MediaPost();
             $reviews = $post->getAllReviews();
             while ($review = $reviews->fetch_object()) {
-                echo '<div class="well"><div class="page-header"><h3>';
                 $media = $post->getMediaById($review->media);
-                echo $media->title;
-                echo "</h3><h5>";
                 $user = $post->getUserById($review->user);
-                echo $user->first_name;
-                echo " ";
-                echo $user->last_name;
-                echo "</h5><p>";
-                echo $review->comment;
-                echo "</p>";
-
-                echo "</div></div>";
+                ?>
+                <div class="well">
+                    <div class="page-header">
+                        <h3><?php echo $media->title; ?></h3>
+                        <h5>
+                        <?php 
+                        echo $user->first_name; 
+                        echo " ";
+                        echo $user->last_name;
+                        ?>
+                         </h5>
+                        <p>
+                        <?php echo $review->comment; ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <a class="btn btn-danger btn-sm">Dismiss</a>
+                    </div>
+                </div>
+                <?php
             }
         ?>
     </div>
