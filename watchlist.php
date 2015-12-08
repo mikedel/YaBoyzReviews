@@ -33,6 +33,15 @@ require_once 'connection.php';
             else
                 echo "horrific failure";
         }
+
+        public function getMyBoys($user_id) {
+            $query_string = "SELECT * FROM `Friendlist` WHERE `user` = " . $user_id;
+            $result = $this->dbConnection->send_sql($query_string);
+            if($result)
+                return $result;
+            else
+                echo "horrific failure";
+        }
 }
 ?>
 

@@ -19,3 +19,12 @@
     color: white;
 
 }
+
+#add_friend_text {
+    width: 75%;
+    padding: 6px 12px;
+}
+#add_friend_button {
+    width: 20%;
+    float: right;
+}
