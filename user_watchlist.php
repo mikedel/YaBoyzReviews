@@ -13,6 +13,7 @@
     <div class="container">
         <h1>My Watchlist</h1>
         <?php
+        if(isset($_SESSION['authenticated_user'])) {
             require_once 'watchlist.php';
             require_once 'mediapost.php';
             $watchlist = new Watchlist();
@@ -54,6 +55,17 @@
             }
             ?>
         <a href="add_to_watchlist.php" class="btn btn-success">Add to Watchlist</a>
+    <?php
+    }
+    else{
+        ?>
+        <div class="page-header">
+            <span><strong>You must <a href="signin.php">sign in </a>to view this content</strong></span>
+        </div>
+        <?php
+    }
+    ?>
+
     </div>
 
 

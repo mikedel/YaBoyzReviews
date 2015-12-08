@@ -10,7 +10,9 @@
     <section id="head-bar">
         <?php include_once 'navbar.php'; ?>
     </section>
-
+    <?php
+        if(isset($_SESSION['authenticated_user'])) {
+    ?>
     <div class="container">
         <div class="jumbotron">
             <h2>Recommend to Friends</h2>
@@ -90,6 +92,17 @@
                 </div>
             </form>
         </div>
+    </div>
+    <?php
+    }
+    else{
+        ?>
+        <div class="page-header">
+            <span><strong>You must <a href="signin.php">sign in </a>to view this content</strong></span>
+        </div>
+        <?php
+    }
+    ?>
 </body>
 </html>
 <script type="text/javascript">

@@ -13,6 +13,7 @@
     <div class="container">
 
         <?php
+        if(isset($_SESSION['authenticated_user'])) {
             require_once 'message.php';            
             require_once 'user.php';
             require_once 'mediapost.php';
@@ -117,6 +118,16 @@
             </form>
             <?php
         ?>
+    <?php
+    }
+    else{
+        ?>
+        <div class="page-header">
+            <span><strong>You must <a href="signin.php">sign in </a>to view this content</strong></span>
+        </div>
+        <?php
+    }
+    ?>
     </div>
     
 
