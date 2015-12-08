@@ -16,7 +16,7 @@
             $post = new MediaPost();
             $user_object = new User();
             $recommendations = $post->getRecommendationsForUser($_SESSION['authenticated_user']);
-            if ($recommendations) {
+            if ($recommendations && $recommendations->num_rows > 0) {
                 while ($recommendation = $recommendations->fetch_object()) {
                     $full_user_name = $user_object->getFullNameById($recommendation->from_user);
                     $url_link = "conversation.php?friend_id=" . $recommendation->from_user;
@@ -69,6 +69,15 @@
                     </div>
                     <?php
                 }
+            }
+            else {
+                ?>
+                <div class="well">
+                    <div class="page-header">
+                        <h3>No personal recommendaions yet.  Tell your boys to hit you up!</h3>
+                    </div>
+                </div>
+                <?php
             }
         ?>
     </div>

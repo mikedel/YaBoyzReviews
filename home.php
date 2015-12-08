@@ -19,7 +19,7 @@
             </p>
         </div>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron" style="margin-bottom: 0px;">
         <div class="container">
             <h2>Where my Boyz at?</h2>
             <p>Invite your boyz for free today, and share in the #1 review site for friends, family, and co-workers</p>

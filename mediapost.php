@@ -33,6 +33,7 @@ require_once 'connection.php';
             $this->addMedia->bind_param("s", $title);
             $this->addMedia->execute();
             $this->media_id = $this->addMedia->insert_id;
+            return $this->media_id;
         }
 
         public function getAllReviews() {

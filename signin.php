@@ -19,7 +19,7 @@
                     <h2>Sign In</h2>
                     <form action="authentication.php" enctype="multipart/form-data" method="post">
                         <div class="form-group">
-                            <label for="email">Username</label>
+                            <label for="email">Email</label>
                             <input type="text" class="form-control" id="email-input" placeholder="Email" name="email" />
                         </div>
                         <div class="form-group">

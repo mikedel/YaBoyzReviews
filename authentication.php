@@ -13,7 +13,7 @@
             $login_successful = false;
             if(!empty($_POST['email']) && !empty($_POST['password'])){
                 $email = $_POST['email'];
-                $password = $_POST['password'];
+                $password = hash("sha256", $_POST['password']);
                 $authUser = new User();
                 $checkUser = $authUser->checkLoginCredentials($email, $password);
                 if($checkUser){
