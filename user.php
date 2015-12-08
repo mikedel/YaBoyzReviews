@@ -26,17 +26,11 @@ require_once 'connection.php';
         public function checkEmailTaken($email){
             $email = mysqli_escape_string($email);
             $query_string = "SELECT * FROM `User` WHERE `email` = \"" . $email . "\"";
-            echo "->";
-            echo $query_string;
-            echo "<-";
             $result = $this->dbConnection->send_sql($query_string);
-            if ($result){
-                echo "Email already exists";
+            if ($result && $result->num_rows > 0){
                 return false;
             }
             else{
-                // echo "Email does not exist yet";
-                // $result = $result->fetch_object();
                 return true;
             }
         }
@@ -98,7 +92,6 @@ require_once 'connection.php';
                 // return $result;
                 return true;
             }
-            echo "failed";
             return false;
         }
 }
