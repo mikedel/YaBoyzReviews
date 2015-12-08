@@ -6,8 +6,11 @@
     height:110px;
     width:110px;
 
-    background-color: red;
+    background-color:#d61616;
     border-radius: 100%;
+}
+#ankle_container:hover{
+    background-color:red;
 }
 
 #ankle_icon{

@@ -35,5 +35,10 @@
     </div>
 </nav>
 <div id="ankle_container">
-<a href="recommend.php"><span id="ankle_icon" class="glyphicon glyphicon-film"></span></a>
+<a href="recommend.php"><span data-toggle="tooltip" title="Recommend Now!" id="ankle_icon" class="glyphicon glyphicon-film"></span></a>
 </div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
