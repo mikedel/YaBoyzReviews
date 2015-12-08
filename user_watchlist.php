@@ -43,7 +43,17 @@
                     echo "</div></div>";
                 }
             }
-        ?>
+            if($list_items->num_rows === 0)
+            {
+                ?>
+                    <div class="well">
+                        <div class="page-header">
+                            <h3>No Items in Watchlist</h3>
+                        </div>
+                    </div>
+                    <?php
+            }
+            ?>
         <a href="add_to_watchlist.php" class="btn btn-success">Add to Watchlist</a>
     </div>
     
