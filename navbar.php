@@ -12,9 +12,10 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="friend_reviews.php">Friend Recommendations</a></li>
-                <li><a href="public_reviews.php">Read Public Reviews</a></li>
-                <li><a href="user_watchlist.php">My Watchlist</a></li>
-                <li><a href="recommend.php">Recommend To Friend</a></li>
+                <li><a href="public_reviews.php">Public Reviews</a></li>
+                <li><a href="user_watchlist.php">Watchlist</a></li>
+                <li><a href="recommend.php">Make Review</a></li>
+                <li><a href="myboys.php">Ya Boyz</a></li>
             </ul>
             <?php
                 session_start();
