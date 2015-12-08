@@ -4,18 +4,27 @@ require_once 'connection.php';
         private $post_output;
         private $dbConnection;
         private $addPost;
-        private $recmomendation_id;
+        private $addPublicPost;
+        private $recommendation_id;
 
         public function __construct(){
             $this->dbConnection = new DatabaseConnection();
             $this->post_output = "";
             $this->addPost = $this->dbConnection->prepare_statement("INSERT INTO `UserRecommendation` (`from_user`, `to_user`, `media`, `rating`, `comment`, `date_created`) VALUES (?, ?, ?, ?, ?, ?)");
+            $this->addPublicPost = $this->dbConnection->prepare_statement("INSERT INTO `UserReview` (`user`, `media`, `rating`, `comment`, `date_created`) VALUES (?, ?, ?, ?, ?)");
         }
 
         public function storeRecommendation($from_user, $to_user, $media, $rating, $comment, $date_created){
             $this->addPost->bind_param("ddddss", $from_user, $to_user, $media, $rating, $comment, $date_created);
             $this->addPost->execute();
             $this->recommendation_id = $this->addPost->insert_id;
+            echo $this->recommendation_id;
+        }
+
+        public function storePublicReview($user, $media, $rating, $comment, $date_created){
+            $this->addPublicPost->bind_param("dddss", $user, $media, $rating, $comment, $date_created);
+            $this->addPublicPost->execute();
+            $this->recommendation_id = $this->addPublicPost->insert_id;
             echo $this->recommendation_id;
         }
 
@@ -63,5 +72,6 @@ require_once 'connection.php';
             else
                 echo "horiffic failure";
         }
+
 }
 ?>

@@ -5,12 +5,11 @@
     <?php
         require_once 'user.php';
             session_start();
-            // $_SESSION['authenticated_user'] = $authUser->getIdByEmail($email);
             unset($_SESSION['authenticated_user']);
             session_destroy();
     ?>
     <title>Authentication</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap-3.3.6-dist/css/bootstrap.css">
+    <?php include_once 'header.php'; ?> 
 </head>
 
 <body>

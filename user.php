@@ -40,11 +40,24 @@ require_once 'connection.php';
             }
         }
 
+        public function getFullNameById($id){
+            $result = $this->dbConnection->send_sql("SELECT * FROM `User` WHERE `id` = " . $id);
+            if ($result){
+                $result = $result->fetch_object();
+                return $result->first_name . " " . $result->last_name;
+            }
+            else{
+                return false;
+            }
+        }
+
         public function getIdByEmail($email){
             $result = $this->dbConnection->send_sql("SELECT `id` FROM `User` WHERE `email` = \"" . $email . "\"");
             if ($result){
-                $result = $result->fetch_object()->id;
-                return $result;
+                $result = $result->fetch_object();
+                if (!$result)
+                    return false;
+                return $result->id;
             }
             else{
                 return false;
