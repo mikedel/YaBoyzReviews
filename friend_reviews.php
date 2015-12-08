@@ -55,7 +55,14 @@
                                 </p>
                                 </div>
                                 <div class="col-md-4">
-                                    <a class="btn btn-success btn-lg" style="margin-top:10%;" href>Holla Back</a>
+                                    <form action="recommend.php" method="POST">
+                                    <div class="form-group">
+                                        <label for="recommend-back">
+                                            <input type="hidden" name="holla_id" value="<?php echo $user->email; ?>">
+                                            <input type="submit" class="btn btn-success btn-lg" style="margin-top:10%;" value="Holla Back" />
+                                        </label>
+                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
