@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    <title>My Posts</title>
-    <?php include_once 'header.php'; ?>   
+    <title>Friend Reviews</title>
+    <?php include_once 'header.php'; ?>
 </head>
 
 <body>
     <section id="head-bar">
-        <?php include_once 'navbar.php'; ?> 
+        <?php include_once 'navbar.php'; ?>
     </section>
     <div class="container">
         <?php
@@ -29,8 +29,8 @@
                             <div class="row">
                                 <div class="col-md-8">
                                 <h3><?php echo $media->title; ?></h3>
-                                <h5><a href="<?php echo $url_link; ?>" >ya boy: 
-                                <?php 
+                                <h5><a href="<?php echo $url_link; ?>" >Ya Boy:
+                                <?php
                                 echo $full_user_name;
                                 ?>
                                 </a>
@@ -41,7 +41,7 @@
                                 )
                                 </h5>
                                 <h5>
-                                written on: 
+                                written on:
                                 <?php
                                 echo $recommendation->date_created;
                                 ?>
