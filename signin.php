@@ -3,12 +3,12 @@
 
 <head>
     <title>My Posts</title>
-    <?php include_once 'header.php'; ?> 
+    <?php include_once 'header.php'; ?>
 </head>
 
 <body>
     <section id="head-bar">
-        <?php include_once 'navbar.php'; ?> 
+        <?php include_once 'navbar.php'; ?>
     </section>
 
     <div class="container">
@@ -30,10 +30,6 @@
                             <input type="submit" class="btn btn-success" value="Login" >
                         </div>
                     </form>
-                    <div style="text-align: center;">
-                        <h2>Or</h2>
-                        <img src="facebook.png" width="50%" />
-                    </div>
                 </div>
                 <div class="col-md-3"></div>
             </div>

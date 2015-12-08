@@ -53,11 +53,8 @@ require_once 'connection.php';
 
         public function getIdByEmail($email){
             $result = $this->dbConnection->send_sql("SELECT `id` FROM `User` WHERE `email` = \"" . $email . "\"");
-            if ($result){
-                $result = $result->fetch_object();
-                if (!$result)
-                    return false;
-                return $result->id;
+            if ($result && $result->num_rows != 0){
+                return $result->fetch_object()->id;
             }
             else{
                 return false;
@@ -89,7 +86,7 @@ require_once 'connection.php';
         public function checkLoginCredentials($email,$password){
             $this->dbConnection = new DatabaseConnection();
             $result = $this->dbConnection->send_sql("SELECT * FROM `User` WHERE `email` = \"" . $email . "\" AND `password` = \"" . $password . "\"");
-            if ($result){
+            if ($result && $result->num_rows > 0){
                 $result = $result->fetch_object();
                 // return $result;
                 return true;

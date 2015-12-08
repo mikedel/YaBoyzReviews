@@ -28,3 +28,36 @@
     width: 20%;
     float: right;
 }
+
+#homepage_jumbotron{
+    background-image:url('../img/film2.jpg');
+    margin-top:-20px;
+    margin-bottom:0px;
+    height:500px;
+
+}
+
+#ya-boys-navbar{
+    background-color:#d61616;
+    color:white;
+}
+
+#ya-boys-navbar a{
+    color:white;
+}
+
+
+#ya-boys-navbar p{
+    color:white;
+    background-color:#d61616;
+}
+
+
+#ya-boys-navbar button{
+    color:white;
+    background-color:#d61616;
+}
+
+#ya-boys-navbar a:hover{
+    color:yellow;
+}

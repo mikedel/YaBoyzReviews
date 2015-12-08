@@ -3,18 +3,18 @@
 
 <head>
     <title>My Watchlist</title>
-    <?php include_once 'header.php'; ?>   
+    <?php include_once 'header.php'; ?>
 </head>
 
 <body>
     <section id="head-bar">
-        <?php include_once 'navbar.php'; ?> 
+        <?php include_once 'navbar.php'; ?>
     </section>
     <div class="container">
-
+        <h1>My Watchlist</h1>
         <?php
             require_once 'watchlist.php';
-            require_once 'mediapost.php';            
+            require_once 'mediapost.php';
             $watchlist = new Watchlist();
             $post = new MediaPost();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -43,8 +43,7 @@
                     echo "</div></div>";
                 }
             }
-            if($list_items->num_rows === 0)
-            {
+            if($list_items->num_rows === 0){
                 ?>
                     <div class="well">
                         <div class="page-header">
@@ -56,7 +55,7 @@
             ?>
         <a href="add_to_watchlist.php" class="btn btn-success">Add to Watchlist</a>
     </div>
-    
+
 
 </body>
 </html>

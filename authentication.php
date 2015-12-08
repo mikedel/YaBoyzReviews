@@ -3,73 +3,49 @@
 
 <head>
     <title>Authentication</title>
-    <?php include_once 'header.php'; ?> 
+    <?php include_once 'header.php'; ?>
 </head>
 
 <body>
     <section id="head-bar">
-            <nav class="navbar navbar-inverse">
-                <div class="container">
-                    <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle"collapse" data-target"#navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                    <a class="navbar-brand" href="home.php">Ya Boyz Reviews</a>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-
-                            <li><a href="friend_reviews.php">Read Friend Reviews</a></li>
-                            <li><a href="recommend.php">Recommend To Friends</a></li>
-                            <li><a href="public_reviews.php">Read Public Reviews</a></li>
-                        </ul>
-                        <button type="button" class="btn btn-default navbar-btn navbar-right"><a href="signin.php">Sign In</a></button>
-                        <button type="button" class="btn btn-default navbar-btn navbar-right"><a href="signup.php">Sign Up</a></button>
-                    </div>
-                </div>
-            </nav>
+        <?php
+            require_once 'user.php';
+            $login_successful = false;
+            if(!empty($_POST['email']) && !empty($_POST['password'])){
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $authUser = new User();
+                $checkUser = $authUser->checkLoginCredentials($email, $password);
+                if($checkUser){
+                    $first_name = $authUser->getFirstNameByEmail($email);
+                    $last_name = $authUser->getLastNameByEmail($email);
+                    $_SESSION['authenticated_user'] = $authUser->getIdByEmail($email);
+                    $login_successful = true;
+                }
+                else{
+                    $login_successful = false;
+                }
+            }
+        ?>
+        <?php include_once 'navbar.php'; ?>
     </section>
-<?php
-require_once 'user.php';
-// $email = $_POST['email'];
-// $pass = $_POST['password'];
-// echo $email;
-// echo $pass;
-if(!empty($_POST['email']) && !empty($_POST['password'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    echo $email;
-    echo "<br />";
-    echo $password;
-    $authUser = new User();
-    $checkUser = $authUser->checkLoginCredentials($email, $password);
-    echo "<br />";
-    echo "Check user:<br />";
-    echo $checkUser;
-    echo "<br />";
-    if($checkUser){
-        $first_name = $authUser->getFirstNameByEmail($email);
-        $last_name = $authUser->getLastNameByEmail($email);
-        session_start();
-        $_SESSION['authenticated_user'] = $authUser->getIdByEmail($email);
-        echo $_SESSION['authenticated_user'];
-?>
+
 
     <div class="container">
         <div class="jumbotron">
-            <span>Welcome <?php echo $first_name; ?>!</span>
+        <?php
+            if($login_successful) {
+                ?>
+                <span>Welcome <?php echo $first_name; ?>!</span>
+                <?php
+            }
+            else {
+                ?>
+                <span>User not found with those credentials.</span>
+                <?php
+            }
+        ?>
         </div>
     </div>
-    <?php
-    }
-    else{
-        echo "User not found with these credentials";
-    }
-
-}
-?>
 </body>
 </html>
