@@ -3,7 +3,7 @@
 
 <head>
     <title>Recommendation Sent</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap-3.3.6-dist/css/bootstrap.css">
+    <?php include_once 'header.php'; ?> 
 </head>
 
 <body>
@@ -13,23 +13,31 @@
 <?php
     require_once 'mediapost.php';
     require_once 'user.php';
-    session_start();
-    // $email = $_POST['email'];
-    // $pass = $_POST['password'];
-    // echo $email;
-    // echo $pass;
-    if(!empty($_POST['username']) && !empty($_POST['title']) && !empty($_POST['rating'])){
+    $error = "";
+    if(!empty($_POST['title']) && !empty($_POST['rating'])){
         $user = new User();
         $post = new MediaPost();
         $from_user = $_SESSION['authenticated_user'];
-        $email = $_POST['username'];
-        $to_user = $user->getIdByEmail($email);
         $title = $_POST['title'];
         $media = $post->getMediaIdByTitle($title);
         $rating = $_POST['rating'];
         $comment = $_POST['comment'];
         $date_created = date("Y-m-d H:i:s");
-        $post->storeRecommendation($from_user, $to_user, $media, $rating, $comment, $date_created);
+        if($_POST['review_type'] == 'private'){
+            $email = $_POST['username'];
+            $to_user = $user->getIdByEmail($email);
+            if ($to_user) {
+                $post->storeRecommendation($from_user, $to_user, $media, $rating, $comment, $date_created);
+            }
+            else {
+                $error = "User with email did not exist";
+            }
+        }
+        else{
+            $post->storePublicReview($from_user, $media, $rating, $comment, $date_created);
+        }
+    }
+    if ($error === "") {
 ?>
 
     <div class="container">
@@ -40,6 +48,17 @@
         </div>
     </div>
     <?php
+}
+else {
+    ?>
+    <div class="container">
+        <div class="jumbotron">
+            <span><?php echo $error . "<br/>"; echo "Email attempted was: " . $_POST['username'] . "<br/>"; ?></span>
+            <span>Click <a href="recommend.php">here</a> to try again</span>
+
+        </div>
+    </div>
+    <?php 
 }
 ?>
 </body>

@@ -3,7 +3,7 @@
 
 <head>
     <title>My Posts</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap-3.3.6-dist/css/bootstrap.css">
+    <?php include_once 'header.php'; ?> 
 </head>
 
 <body>

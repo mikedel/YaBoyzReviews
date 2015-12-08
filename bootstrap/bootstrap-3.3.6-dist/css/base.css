@@ -1,0 +1,18 @@
+#ankle_container {
+    position: fixed;
+    top: 85%;
+    right: 10px;
+    font-size: 72px;
+    height:110px;
+    width:110px;
+
+    background-color: red;
+    border-radius: 100%;
+}
+
+#ankle_icon{
+    padding-left: 19px;
+    padding-top:16px;
+    color: white;
+
+}
