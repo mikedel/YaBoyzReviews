@@ -12,6 +12,7 @@
     </section>
     <div class="container">
         <?php
+        if(isset($_SESSION['authenticated_user'])) {
             require_once 'watchlist.php';
             require_once 'mediapost.php';
             require_once 'user.php';
@@ -87,6 +88,16 @@
                 <input id="add_friend_button" class="btn btn-success" type="submit" name="submit" value="Add a Boy" />
             </div>
         </form>
+    <?php
+    }
+    else{
+        ?>
+        <div class="page-header">
+            <span><strong>You must <a href="signin.php">sign in </a>to view this content</strong></span>
+        </div>
+        <?php
+    }
+    ?>
     </div>
 
 

@@ -38,10 +38,6 @@
                         <input type="submit" class="btn btn-success" name="submit" value="Register" >
                     </div>
                 </form>
-                <div style="text-align: center;">
-                    <h2>Or</h2>
-                    <img src="facebook.png" width="50%" />
-                </div>
             </div>
             <div class="col-md-3"></div>
             </div>

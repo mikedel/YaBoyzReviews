@@ -11,6 +11,7 @@
         <?php include_once 'navbar.php'; ?>
     </section>
 <?php
+if(isset($_SESSION['authenticated_user'])) {
     require_once 'mediapost.php';
     require_once 'user.php';
     $error = "";
@@ -73,5 +74,15 @@ else {
     <?php
 }
 ?>
+    <?php
+    }
+    else{
+        ?>
+        <div class="page-header">
+            <span><strong>You must <a href="signin.php">sign in </a>to view this content</strong></span>
+        </div>
+        <?php
+    }
+    ?>
 </body>
 </html>
