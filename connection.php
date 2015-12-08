@@ -93,7 +93,12 @@
 
         public function send_sql($statement) {
             if (!isset($this->mysqli)) $this->connect();
+            $statement = $this->mysqli->real_escape_string($statement);
+            return $this->mysqli->query($statement);
+        }
 
+        public function send_sql_email($statement) {
+            if (!isset($this->mysqli)) $this->connect();
             return $this->mysqli->query($statement);
         }
     }

@@ -24,9 +24,8 @@ require_once 'connection.php';
         }
 
         public function checkEmailTaken($email){
-            $email = mysqli_escape_string($email);
             $query_string = "SELECT * FROM `User` WHERE `email` = \"" . $email . "\"";
-            $result = $this->dbConnection->send_sql($query_string);
+            $result = $this->dbConnection->send_sql_email($query_string);
             if ($result && $result->num_rows > 0){
                 return false;
             }
@@ -36,7 +35,6 @@ require_once 'connection.php';
         }
 
         public function getFullNameById($id){
-            $id = mysqli_escape_string($id);
             $result = $this->dbConnection->send_sql("SELECT * FROM `User` WHERE `id` = " . $id);
             if ($result){
                 $result = $result->fetch_object();
@@ -48,10 +46,11 @@ require_once 'connection.php';
         }
 
         public function getIdByEmail($email){
-            $email = mysqli_escape_string($email);
-            $result = $this->dbConnection->send_sql("SELECT `id` FROM `User` WHERE `email` = \"" . $email . "\"");
+            $query_string = "SELECT * FROM `User` WHERE `email` = \"" . $email . "\"";
+            $result = $this->dbConnection->send_sql_email($query_string);
             if ($result && $result->num_rows != 0){
-                return $result->fetch_object()->id;
+                $result = $result->fetch_object();
+                return $result->id;
             }
             else{
                 return false;
@@ -59,8 +58,7 @@ require_once 'connection.php';
         }
 
         public function getFirstNameByEmail($email){
-            $email = mysqli_escape_string($email);
-            $result = $this->dbConnection->send_sql("SELECT `first_name` FROM `User` WHERE `email` = \"" . $email . "\"");
+            $result = $this->dbConnection->send_sql_email("SELECT `first_name` FROM `User` WHERE `email` = \"" . $email . "\"");
             if ($result){
                 $result = $result->fetch_object()->first_name;
                 return $result;
@@ -71,8 +69,7 @@ require_once 'connection.php';
         }
 
         public function getLastNameByEmail($email){
-            $email = mysqli_escape_string($email);
-            $result = $this->dbConnection->send_sql("SELECT `last_name` FROM `User` WHERE `email` = \"" . $email . "\"");
+            $result = $this->dbConnection->send_sql_email("SELECT `last_name` FROM `User` WHERE `email` = \"" . $email . "\"");
             if ($result){
                 $result = $result->fetch_object()->last_name;
                 return $result;
@@ -83,13 +80,10 @@ require_once 'connection.php';
         }
 
         public function checkLoginCredentials($email,$password){
-            $email = mysqli_escape_string($email);
-            $paassword = mysqli_escape_string($paassword);
             $this->dbConnection = new DatabaseConnection();
-            $result = $this->dbConnection->send_sql("SELECT * FROM `User` WHERE `email` = \"" . $email . "\" AND `password` = \"" . $password . "\"");
+            $result = $this->dbConnection->send_sql_email("SELECT * FROM `User` WHERE `email` = \"" . $email . "\" AND `password` = \"" . $password . "\"");
             if ($result && $result->num_rows > 0){
                 $result = $result->fetch_object();
-                // return $result;
                 return true;
             }
             return false;

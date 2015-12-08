@@ -18,8 +18,6 @@ require_once 'connection.php';
         }
 
         public function getAllMessages($this_user, $other_user) {
-            $this_user = mysqli_escape_string($this_user);
-            $other_user = mysqli_escape_string($other_user);
             $where_clause = "WHERE (`to_user` = " . $this_user . " AND `from_user` = " . $other_user . ") OR (`to_user` = " . $other_user . " AND `from_user` = " . $this_user . ")";
             $query_string = "SELECT * FROM `Message` " . $where_clause . " ORDER BY `date_created`";
             $result = $this->dbConnection->send_sql($query_string);
@@ -30,8 +28,6 @@ require_once 'connection.php';
         }
 
         public function getAllRecommendationsForConversation($this_user, $other_user) {
-            $this_user = mysqli_escape_string($this_user);
-            $other_user = mysqli_escape_string($other_user);
             $where_clause = "WHERE (`to_user` = " . $this_user . " AND `from_user` = " . $other_user . ") OR (`to_user` = " . $other_user . " AND `from_user` = " . $this_user . ")";
             $query_string = "SELECT * FROM `UserRecommendation` " . $where_clause . " ORDER BY `date_created`";
             $result = $this->dbConnection->send_sql($query_string);
