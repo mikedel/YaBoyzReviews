@@ -29,6 +29,7 @@ require_once 'connection.php';
         }
 
         public function getWatchlistForUser($user_id) {
+            $user_id = mysqli_escape_string($user_id);
             $query_string = "SELECT * FROM `Watchlist` WHERE `user` = " . $user_id;
             $result = $this->dbConnection->send_sql($query_string);
             if ($result)
@@ -38,6 +39,8 @@ require_once 'connection.php';
         }
 
         public function removeMediaFromWatchlist($user_id, $media_id) {
+            $user_id = mysqli_escape_string($user_id);
+            $media_id = mysqli_escape_string($media_id);
             $query_string = "DELETE FROM `Watchlist` WHERE `user` = " . $user_id . " AND `media` = " . $media_id;
             $result = $this->dbConnection->send_sql($query_string);
             if($result)
@@ -47,6 +50,7 @@ require_once 'connection.php';
         }
 
         public function getMyBoys($user_id) {
+            $user_id = mysqli_escape_string($user_id);
             $query_string = "SELECT * FROM `Friendlist` WHERE `user` = " . $user_id;
             $result = $this->dbConnection->send_sql($query_string);
             if($result)
