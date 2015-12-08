@@ -24,7 +24,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" class="form-control" id="password-input" placeholder="***********" name="password" />
+                            <input type="password" class="form-control" id="password-input" placeholder="***********" name="password" />
                         </div>
                         <div class="form-group" style="text-align: center;">
                             <input type="submit" class="btn btn-success" value="Login" >

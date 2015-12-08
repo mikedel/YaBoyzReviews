@@ -56,7 +56,7 @@ require_once 'connection.php';
 
         public function getMediaIdByTitle($title) {
             $query_string = "SELECT * FROM `Media` WHERE `title` = \"" . $title . "\"";
-            $result = $this->dbConnection->send_sql($query_string);
+            $result = $this->dbConnection->send_sql_email($query_string);
             if ($result && $result->num_rows != 0)
                 return $result->fetch_object()->id;
             else
